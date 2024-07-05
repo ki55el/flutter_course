@@ -16,5 +16,4 @@ class ItemModel {
       price: json['price'],
     );
   }
-
 }

@@ -13,7 +13,8 @@ class MenuScreen extends StatefulWidget {
   State<MenuScreen> createState() => _MenuScreenState();
 }
 
-class _MenuScreenState extends State<MenuScreen> with SingleTickerProviderStateMixin {
+class _MenuScreenState extends State<MenuScreen>
+    with SingleTickerProviderStateMixin {
   late final _menuController = ItemScrollController();
   late final _appBarController = ItemScrollController();
   late final _itemListener = ItemPositionsListener.create();
@@ -41,7 +42,9 @@ class _MenuScreenState extends State<MenuScreen> with SingleTickerProviderStateM
   }
 
   void _onItemPositionsChanged() {
-    final fullyVisibleIndex = _itemListener.itemPositions.value.firstWhere((item) => item.itemLeadingEdge >= 0).index;
+    final fullyVisibleIndex = _itemListener.itemPositions.value
+        .firstWhere((item) => item.itemLeadingEdge >= 0)
+        .index;
 
     if (_shouldUpdateCurrentCategory(fullyVisibleIndex)) {
       _setCurrentCategoryIndex(fullyVisibleIndex);
@@ -49,7 +52,8 @@ class _MenuScreenState extends State<MenuScreen> with SingleTickerProviderStateM
     }
   }
 
-  bool _shouldUpdateCurrentCategory(int newIndex) => newIndex!= _currentCategoryIndex &&!_isScrolling &&!_scrolledToBottom;
+  bool _shouldUpdateCurrentCategory(int newIndex) =>
+      newIndex != _currentCategoryIndex && !_isScrolling && !_scrolledToBottom;
 
   void _setCurrentCategoryIndex(int newIndex) {
     setState(() {
@@ -59,7 +63,8 @@ class _MenuScreenState extends State<MenuScreen> with SingleTickerProviderStateM
 
   Future<void> _scrollMenuToCategory(int index) async {
     _isScrolling = true;
-    await _menuController.scrollTo(index: index, duration: const Duration(milliseconds: 200));
+    await _menuController.scrollTo(
+        index: index, duration: const Duration(milliseconds: 200));
     await Future.delayed(const Duration(milliseconds: 200));
     _isScrolling = false;
   }
@@ -125,16 +130,16 @@ class _MenuScreenState extends State<MenuScreen> with SingleTickerProviderStateM
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: index == _currentCategoryIndex
-             ? AppColors.lightBlue
+              ? AppColors.lightBlue
               : AppColors.white,
         ),
         child: Text(
           category.categoryName,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: index == _currentCategoryIndex
-               ? AppColors.white
-                : AppColors.black,
-          ),
+                color: index == _currentCategoryIndex
+                    ? AppColors.white
+                    : AppColors.black,
+              ),
         ),
       ),
     );
