@@ -3,7 +3,7 @@ import 'package:flutter_course/src/features/menu/models/item_model.dart';
 
 const categories = [
   CategoryModel(
-    categoryName: 'Черный кофе',
+    categoryName: 'Кофе',
     items: [
       ItemModel(name: 'Американо ', price: 109),
       ItemModel(name: 'Лунго', price: 129),
